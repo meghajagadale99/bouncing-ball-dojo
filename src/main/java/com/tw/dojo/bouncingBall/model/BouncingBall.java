@@ -2,7 +2,7 @@ package com.tw.dojo.bouncingBall.model;
 
 import com.tw.dojo.bouncingBall.ui.BallWorld;
 
-public class BouncingBall extends Ball {
+public class BouncingBall extends Ball implements IBouncing {
     public static final int MOVEMENT_SPEED = 12;
 
     static final int DOWN = 1;
@@ -27,7 +27,7 @@ public class BouncingBall extends Ball {
      *
      ***********************************************************************************/
 
-    private int reverseDirectionIfNecessary() {
+    public int reverseDirectionIfNecessary() {
         if (movingTooHigh() || movingTooLow()) {
             return switchDirection();
         }
@@ -35,27 +35,27 @@ public class BouncingBall extends Ball {
         return this.direction;
     }
 
-    private boolean movingTooLow() {
+    public boolean movingTooLow() {
         return y + radius >= BallWorld.BOX_HEIGHT && movingDown();
     }
 
-    private boolean movingTooHigh() {
+    public boolean movingTooHigh() {
         return y - radius <= 0 && movingUp();
     }
 
-    private int switchDirection() {
+    public int switchDirection() {
         return movingDown() ? UP : DOWN;
     }
 
-    private int move() {
+    public int move() {
         return y + (MOVEMENT_SPEED * direction);
     }
 
-    private boolean movingDown() {
+    public boolean movingDown() {
         return direction == DOWN;
     }
 
-    private boolean movingUp() {
+    public boolean movingUp() {
         return direction == UP;
     }
 }

@@ -1,6 +1,6 @@
 package com.tw.dojo.bouncingBall.model;
 
-public class ElasticBall extends Ball {
+public class ElasticBall extends Ball implements IElastic {
     public static final int GROWTH_RATE = 2;
 
     static final int GROW = 1;
@@ -25,7 +25,7 @@ public class ElasticBall extends Ball {
      *
      ***********************************************************************************/
 
-    private int reverseGrowthDirectionIfNecessary() {
+    public int reverseGrowthDirectionIfNecessary() {
         if (growingTooBig() || shrinkingTooSmall()) {
             return switchDirection();
         }
@@ -33,27 +33,27 @@ public class ElasticBall extends Ball {
         return this.growthDirection;
     }
 
-    private boolean shrinkingTooSmall() {
+    public boolean shrinkingTooSmall() {
         return radius <= 0 && shrinking();
     }
 
-    private boolean growingTooBig() {
+    public boolean growingTooBig() {
         return radius >= DEFAULT_RADIUS && growing();
     }
 
-    private int switchDirection() {
+    public int switchDirection() {
         return growing() ? SHRINK : GROW;
     }
 
-    private int next() {
+    public int next() {
         return radius + (GROWTH_RATE * growthDirection);
     }
 
-    private boolean shrinking() {
+    public boolean shrinking() {
         return growthDirection == SHRINK;
     }
 
-    private boolean growing() {
+    public boolean growing() {
         return growthDirection == GROW;
     }
 }

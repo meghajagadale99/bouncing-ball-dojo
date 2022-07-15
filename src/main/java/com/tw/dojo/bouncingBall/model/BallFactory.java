@@ -6,13 +6,14 @@ public class BallFactory {
         return new Ball[]{
                 bouncingBall(75, 50, BouncingBall.DOWN),
                 elasticBall(250, 100, Ball.DEFAULT_RADIUS, ElasticBall.SHRINK),
-                elasticBouncingBall(390, 100, ElasticBouncingBall.DOWN, ElasticBouncingBall.SHRINK, Ball.DEFAULT_RADIUS),
+                bouncingElasticBall(360, 160,
+                        Ball.DEFAULT_RADIUS, BouncingElasticBall.SHRINK, BouncingElasticBall.UP ),
                 // bouncingElasticBall() --> Let's make a new ball!
         };
     }
 
-    private static Ball elasticBouncingBall(int centerX, int centerY, int direction,int growthDirection, int radius) {
-        return new ElasticBouncingBall(centerX, centerY, direction, radius);
+    private static Ball bouncingElasticBall(int centerX, int centerY, int moveDirection, int growthDirection, int radius) {
+        return new BouncingElasticBall(centerX, centerY, moveDirection, growthDirection, radius);
     }
 
     public static Ball bouncingBall(int centerX, int centerY, int direction) {
